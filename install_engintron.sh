@@ -25,9 +25,9 @@ configure_cloudflare()
         echo "Configurando Engintron..."
 
         echo "Adding IP to CloudFlare ..."
-        IP_COUNT=$(whmapi1 listips | grep "public_ip:" | cut -d':' -f2 | sed 's/ //' | grep -v "^169.*" | grep -v "^10.*" | grep -v "^192.168.*" | wc -l)
+        IP_COUNT=$(whmapi1 listips | grep "public_ip:" | cut -d':' -f2 | sed 's/ //' | grep -v "^169\." | grep -v "^10\." | grep -v "^192\.168\." | wc -l)
         if [ "$IP_COUNT" -eq 1 ]; then
-                IP=$(whmapi1 listips | grep "public_ip:" | cut -d':' -f2 | sed 's/ //' | grep -v "^169.*" | grep -v "^10.*" | grep -v "^192.168.*")
+                IP=$(whmapi1 listips | grep "public_ip:" | cut -d':' -f2 | sed 's/ //' | grep -v "^169\." | grep -v "^10\." | grep -v "^192\.168\.")
                 sed -i '/^set \$PROXY_DOMAIN_OR_IP/d' /etc/nginx/custom_rules
                 printf "\nset \$PROXY_DOMAIN_OR_IP \"$IP\";" >> /etc/nginx/custom_rules
         fi
