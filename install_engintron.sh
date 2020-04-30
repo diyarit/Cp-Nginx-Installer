@@ -43,7 +43,7 @@ configure_nocacheoncookie()
 {
         sed -i -e '/# DISABLED CACHE IF THERE IS PHP COOKIE/,+4d' /etc/nginx/custom_rules
         printf "\n# DISABLED CACHE IF THERE IS PHP COOKIE\n" >> /etc/nginx/custom_rules
-        printf "if (\$http_cookie ~* \".*PHPSESSID.*|.*MoodleSession.*|.*MOODLEID.*|.*laravel_session.*|.*ci_session.*|SSESS.*|symfony|CAKEPHP\") {\n" >> /etc/nginx/custom_rules
+        printf "if (\$http_cookie ~* \".*PHPSESSID.*|.*MoodleSession.*|.*MOODLEID.*|.*laravel_session.*|.*ci_session.*|SSESS.*|symfony|CAKEPHP|WHMCS.*\") {\n" >> /etc/nginx/custom_rules
         printf "\tset \$CACHE_BYPASS_FOR_DYNAMIC 1;\n" >> /etc/nginx/custom_rules
         printf "\tset \$EXPIRES_FOR_DYNAMIC 0;\n" >> /etc/nginx/custom_rules
         printf "}\n" >> /etc/nginx/custom_rules
